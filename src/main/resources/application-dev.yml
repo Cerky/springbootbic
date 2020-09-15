@@ -1,0 +1,4 @@
+server:
+  port: 8008
+#  servlet:
+#    context-path: bic     # 项目访问路径，默认为 /

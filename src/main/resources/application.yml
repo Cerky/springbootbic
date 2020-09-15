@@ -1,0 +1,3 @@
+spring:
+  profiles:
+    active: "@profiles.active@"   # 使用打包时指定的环境
