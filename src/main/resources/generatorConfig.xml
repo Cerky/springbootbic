@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 详细配置查看官网http://mybatis.org/generator/configreference/xmlconfig.html，https://blog.csdn.net/u013158317/article/details/99408499 -->
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <classPathEntry location="E:\maven-repository\mysql\mysql-connector-java\8.0.21\mysql-connector-java-8.0.21.jar"/>
+
+    <context id="sqlGenerate" defaultModelType="flat">
+
+        <!-- 解决读取数据库中的comments中文乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化 Java 代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化 XML 代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!--<commentGenerator>
+            &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/> &lt;!&ndash; 获取数据库中的注解 &ndash;&gt;
+        </commentGenerator>-->
+
+        <!-- 使用自定义注释生成器 -->
+        <commentGenerator type="com.example.springbootbic.common.CustomCommentGenerator"><!-- 自定义model类，需要引入到插件中 -->
+            <property name="author" value="CZJ"/>
+            <property name="dateFormat" value="yyyy/MM/dd"/>
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/cerky?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"
+                        userId="root"
+                        password="">
+            <property name="nullCatalogMeansCurrent" value="true"/> <!-- mysql8.x插件无法识别schema问题导致生成其它数据库同名的表model -->
+            <property name="useInformationSchema" value="true"/> <!-- model中数据库注解 -->
+        </jdbcConnection>
+
+        <!-- 配置用来指定JDBC类型和Java类型如何转换 -->
+        <!-- forceBigDecimals 属性可以控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal,默认值为false -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 该元素用来控制生成的实体类 -->
+        <javaModelGenerator targetPackage="com.example.springbootbic.entity.sys" targetProject="src/main/java">
+            <!-- enableSubPackages:如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成Mapper映射XML文件位置 -->
+        <sqlMapGenerator targetPackage="mapper.sys" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成Dao接口文件位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.springbootbic.mapper.sys" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 配置要通过内省的表，只有配置的才会生成实体类和其他文件 -->
+        <table tableName="sys_user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--<property name="modelOnly" value="true"/>-->    <!-- 只生成实体类和xml文件，不生成mapper接口和CRUD-->
+        </table>
+        <table tableName="sys_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="modelOnly" value="true"/>
+        </table>
+        <table tableName="sys_permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="modelOnly" value="true"/>
+        </table>
+        <table tableName="sys_user_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="modelOnly" value="true"/>
+        </table>
+        <table tableName="sys_role_permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="modelOnly" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
