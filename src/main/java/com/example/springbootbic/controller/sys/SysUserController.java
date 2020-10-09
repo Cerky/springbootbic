@@ -1,9 +1,11 @@
 package com.example.springbootbic.controller.sys;
 
 import com.example.springbootbic.common.Result;
+import com.example.springbootbic.exception.CustomException;
 import com.example.springbootbic.service.sys.SysUserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -27,7 +29,7 @@ public class SysUserController {
      * @return              对应的用户信息
      */
     @RequestMapping(value = "getUser", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result getUser(Long id) {
+    public Result getUser(@RequestParam Long id) {
         return Result.success(sysUserService.getUser(id));
     }
 

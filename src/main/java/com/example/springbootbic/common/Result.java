@@ -1,5 +1,7 @@
 package com.example.springbootbic.common;
 
+import com.example.springbootbic.exception.ErrorEnum;
+
 /**
  * @ClassName: Result
  * @Description: 封装接口响应数据，用于统一接口返回数据格式
@@ -7,11 +9,6 @@ package com.example.springbootbic.common;
  * @Date: 2020/9/28
  */
 public class Result {
-
-    private static final int CODE_SUCCESS = 200;            // 请求成功默认状态码
-    private static final int CODE_ERROR = -1;               // 请求失败默认状态码
-    private static final String MESSAGE_SUCCESS = "SUCCESS";    // 请求成功默认描述
-    private static final String MESSAGE_ERROR = "ERROR";        // 请求失败默认描述
 
     private int code;           // 状态码
     private String message;     // 描述
@@ -23,28 +20,38 @@ public class Result {
         this.data = data;
     }
 
+    public Result(ErrorEnum errorEnum, Object data) {
+        this.code = errorEnum.getCode();
+        this.message = errorEnum.getMessage();
+        this.data = data;
+    }
+
     public static Result success() {
-        return new Result(CODE_SUCCESS, MESSAGE_SUCCESS, null);
+        return new Result(ErrorEnum.SUCCESS, null);
     }
 
     public static Result success(Object data) {
-        return new Result(CODE_SUCCESS, MESSAGE_SUCCESS, data);
+        return new Result(ErrorEnum.SUCCESS, data);
     }
 
-    public static Result success(int code, String message, Object data) {
-        return new Result(code, message, data);
+    public static Result success(ErrorEnum errorEnum, Object data) {
+        return new Result(errorEnum, data);
     }
 
     public static Result failure() {
-        return new Result(CODE_ERROR, MESSAGE_ERROR, null);
+        return new Result(ErrorEnum.ERROR, null);
     }
 
     public static Result failure(String message) {
-        return new Result(CODE_ERROR, message, null);
+        return new Result(ErrorEnum.ERROR.getCode(), message, null);
     }
 
     public static Result failure(int code, String message) {
         return new Result(code, message, null);
+    }
+
+    public static Result failure(ErrorEnum errorEnum) {
+        return new Result(errorEnum, null);
     }
 
     public int getCode() {
