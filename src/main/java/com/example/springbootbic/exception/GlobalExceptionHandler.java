@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Result exceptionHandler(Exception ex) {
         logger.error(ex.getMessage(), ex);      // 异常记录日志
-        return Result.failure(ex.getMessage());
+        return Result.failure(ErrorEnum.SERVER_ERROR);  // 不能直接使用异常信息（返回值需要屏蔽异常信息，特别是sql异常信息）
     }
 
 }

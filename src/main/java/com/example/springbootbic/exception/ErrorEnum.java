@@ -13,15 +13,15 @@ public enum ErrorEnum {
     /** 请求失败默认返回 */
     ERROR(-1, "ERROR"),
     /** 未登录 */
-    NOLOG(-99, "未登录")
+    NOLOG(-99, "未登录"),
 
     /* 公共模块：100.. */
-
+    SERVER_ERROR(10001, "系统异常")
 
     ;
 
-    private Integer code;
-    private String message;
+    private final Integer code;
+    private final String message;
 
     ErrorEnum(Integer code, String message) {
         this.code = code;

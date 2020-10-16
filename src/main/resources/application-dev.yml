@@ -25,3 +25,5 @@ mybatis:
   type-aliases-package: com.example.demo.entity   # 注意：对应实体类的路径，配置后mapper可以直接使用实体类的简写
   configuration:
     map-underscore-to-camel-case: true      # 开启驼峰uName自动映射到u_name
+
+logPath: ../logs        # 日志输出路径，当前为项目同级目录
