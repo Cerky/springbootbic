@@ -26,4 +26,4 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true      # 开启驼峰uName自动映射到u_name
 
-logPath: ../logs        # 日志输出路径，当前为项目同级目录
+logPath: ./logs        # 打成jar的同级目录

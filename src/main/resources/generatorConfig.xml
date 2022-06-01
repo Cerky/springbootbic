@@ -44,7 +44,7 @@
         </javaTypeResolver>
 
         <!-- 该元素用来控制生成的实体类 -->
-        <javaModelGenerator targetPackage="com.example.springbootbic.entity.sys" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.example.springbootbic.entity.test" targetProject="src/main/java">
             <!-- enableSubPackages:如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false -->
             <property name="enableSubPackages" value="true"/>
             <!-- 清理前后的空格 -->
@@ -52,12 +52,12 @@
         </javaModelGenerator>
 
         <!-- 生成Mapper映射XML文件位置 -->
-        <sqlMapGenerator targetPackage="mapper.sys" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper.test" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成Dao接口文件位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.springbootbic.mapper.sys" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.springbootbic.mapper.test" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
